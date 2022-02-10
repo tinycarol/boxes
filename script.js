@@ -34,6 +34,7 @@ const start = () => {
     const prev = {};
 
     const onMobileHover = (e) => {
+      e.preventDefault();
       const x = Math.floor((e.touches[0].pageX - wrapperX) / boxSize);
       const y = Math.floor((e.touches[0].pageY - wrapperY) / boxSize);
 
@@ -53,6 +54,7 @@ const start = () => {
     };
 
     const onMobileHoverOut = () => {
+      e.preventDefault();
       const event = new Event(`o${prev.x},${prev.y}`);
       document.body.dispatchEvent(event);
     };
