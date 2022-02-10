@@ -62,7 +62,6 @@ class Box {
     box.classList.add("box");
     box.dataset.x = this.x;
     box.dataset.y = this.y;
-    box.tabIndex = -1;
     box.addEventListener("mouseenter", this.onHover.bind(this));
     box.addEventListener("mouseleave", this.onHoverOut.bind(this));
     document.body.addEventListener(
