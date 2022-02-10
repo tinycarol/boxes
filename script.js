@@ -1,5 +1,6 @@
 const home = document.getElementById("home");
 const button = document.querySelector("button");
+const audio = document.querySelector("audio");
 
 const start = () => {
   home.removeChild(button);
@@ -14,7 +15,8 @@ const start = () => {
   const boxSize = 40;
 
   let boxes = [];
-  const eventHandler = new EventHandler();
+
+  const sound = new SoundManager(audio);
 
   const colors = [
     "red",
@@ -27,7 +29,6 @@ const start = () => {
   ];
 
   const generateBoxes = () => {
-    eventHandler.cleanUp();
     wrapper.innerHTML = "";
     boxes = [];
 
@@ -36,8 +37,8 @@ const start = () => {
         const box = new Box(
           j,
           i,
-          eventHandler,
-          colors[(i + j) % colors.length]
+          colors[(i + j) % colors.length],
+          sound
         );
         boxes.push(box);
         wrapper.appendChild(box.render());
