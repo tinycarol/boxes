@@ -20,6 +20,8 @@ const start = () => {
 
   const sound = new SoundManager(audio);
 
+  document.body.appendChild(sound.render());
+
   const colors = [
     "red",
     "orange",
