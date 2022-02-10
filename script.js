@@ -55,14 +55,14 @@ const start = () => {
       prev.y = y;
     };
 
-    const onMobileHoverOut = () => {
+    const onMobileHoverOut = (e) => {
       e.preventDefault();
       const event = new Event(`o${prev.x},${prev.y}`);
       document.body.dispatchEvent(event);
     };
 
     document.body.addEventListener("touchstart", onMobileHover);
-    document.body.addEventListener("touchmove", onMobileHover);
+    document.body.addEventListener("touchmove", onMobileHover, {passive: false});
     document.body.addEventListener("touchend", onMobileHoverOut);
   };
 
