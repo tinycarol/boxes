@@ -1,0 +1,95 @@
+:root {
+  --shadow: rgba(255, 255, 255, 0.3);
+  --shadow-dark: rgba(0, 0, 0, 0.3)
+}
+
+body {
+  margin: 0;
+}
+
+#home {
+  display: grid;
+  place-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+#wrapper {
+  height: 80vh;
+  width: 80vw;
+  background-color: white;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#wrapper.visible {
+  display: flex;
+}
+
+button {
+  font-family: "Menlo", monospace;
+  padding: 10px 20px;
+  background-color: lavender;
+  color: black;
+  font-size: 20px;
+  border-width: 0;
+  border-radius: 8px;
+  box-shadow: 0 0 0 var(--shadow-dark);
+}
+
+button:hover {
+  top: -10px;
+  box-shadow: 0px 20px 14px var(--shadow-dark);
+}
+
+button, .box {
+  position: relative;
+  top: 0px;
+  transition: all 0.2s linear;
+}
+
+.box {
+  width: 40px;
+  height: 40px;
+}
+
+.box::after {
+  width: 30px;
+  height: 30px;
+  background-color: var(--box-color, navy);
+  content: "";
+  display: block;
+  border-radius: 3px;
+  box-shadow: 0 0 0 var(--shadow);
+  filter: brightness(0) invert(1);
+  transition: box-shadow 0.2s linear, filter 0.3s linear;
+  transform: translate(5px, 5px);
+}
+
+.sibling-2 {
+  top: -5px;
+}
+
+.sibling-2::after {
+  box-shadow: 0 5px 3px var(--shadow);
+  filter: brightness(0.3) invert(1);
+}
+
+.sibling-1 {
+  top: -10px;
+}
+
+.sibling-1::after {
+  box-shadow: 0 10px 7px var(--shadow);
+  filter: brightness(0.7) invert(1);
+}
+
+.box:hover {
+  top: -20px;
+}
+
+.box:hover::after {
+  box-shadow: 0px 20px 14px var(--shadow);
+  filter: brightness(1) invert(1);
+}
