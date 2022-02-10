@@ -4,6 +4,7 @@ class Box {
     this.y = y;
     this.color = color;
     this.sound = sound;
+    this.mobileHover = false;
   }
 
   onSibling2Hover = (event) => {
@@ -22,9 +23,26 @@ class Box {
     }
   };
 
+  onMobileHover(e) {
+    if (!this.mobileHover) {
+      this.element.focus();
+      this.onHover(e);
+      this.mobileHover = true;
+    }
+  }
+
+  onMobileHoverOut(e) {
+    if (this.mobileHover) {
+      this.element.blur();
+      this.onHoverOut(e);
+      this.mobileHover = false;
+    }
+  }
+
   onHover(e) {
-    e.preventDefault();
+    e?.preventDefault();
     this.sound.play();
+    this.element.classList.add("hover");
     const event = new CustomEvent(`${this.x},${this.y}`, {
       detail: { hovering: true },
     });
@@ -32,7 +50,8 @@ class Box {
   }
 
   onHoverOut(e) {
-    e.preventDefault();
+    e?.preventDefault();
+    this.element.classList.remove("hover");
     const event = new CustomEvent(`${this.x},${this.y}`, {
       detail: { hovering: false },
     });
@@ -45,11 +64,17 @@ class Box {
     box.classList.add("box");
     box.dataset.x = this.x;
     box.dataset.y = this.y;
+    box.tabIndex = -1;
     box.addEventListener("mouseenter", this.onHover.bind(this));
-    box.addEventListener("touchstart", this.onHover.bind(this));
     box.addEventListener("mouseleave", this.onHoverOut.bind(this));
-    box.addEventListener("touchend", this.onHoverOut.bind(this));
-    box.addEventListener("touchmove", this.onHoverOut.bind(this));
+    document.body.addEventListener(
+      `i${this.x},${this.y}`,
+      this.onMobileHover.bind(this)
+    );
+    document.body.addEventListener(
+      `o${this.x},${this.y}`,
+      this.onMobileHoverOut.bind(this)
+    );
     this.element = box;
     this.setupListeners();
     return box;
