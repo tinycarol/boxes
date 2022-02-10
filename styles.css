@@ -103,8 +103,18 @@ button.mute {
 }
 
 button.mute.muted::after {
-  content: 'X';
+  content: "X";
   font-family: monospace;
-  color:rgb(150, 150, 150);
+  color: rgb(150, 150, 150);
   font-size: 40px;
+}
+
+a {
+  position: fixed;
+  bottom: 50px;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }
