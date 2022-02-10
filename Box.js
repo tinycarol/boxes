@@ -25,7 +25,6 @@ class Box {
 
   onMobileHover(e) {
     if (!this.mobileHover) {
-      this.element.focus();
       this.onHover(e);
       this.mobileHover = true;
     }
@@ -33,7 +32,6 @@ class Box {
 
   onMobileHoverOut(e) {
     if (this.mobileHover) {
-      this.element.blur();
       this.onHoverOut(e);
       this.mobileHover = false;
     }
