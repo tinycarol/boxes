@@ -38,19 +38,21 @@ const start = () => {
       const x = Math.floor((e.touches[0].pageX - wrapperX) / boxSize);
       const y = Math.floor((e.touches[0].pageY - wrapperY) / boxSize);
 
-      if (prev.x !== undefined && (prev.x !== x || prev.y !== y)) {
-        const outEvent = new Event(`o${prev.x},${prev.y}`);
-        document.body.dispatchEvent(outEvent);
+      if (prev.x !== x || prev.y !== y) {
+        if (prev.x !== undefined) {
+          const outEvent = new Event(`o${prev.x},${prev.y}`);
+          document.body.dispatchEvent(outEvent);
+        }
+
+        const inEvent = new CustomEvent(`i${x},${y}`, {
+          detail: { hovering: true, mobile: true },
+        });
+
+        document.body.dispatchEvent(inEvent);
       }
 
       prev.x = x;
       prev.y = y;
-
-      const inEvent = new CustomEvent(`i${x},${y}`, {
-        detail: { hovering: true, mobile: true },
-      });
-
-      document.body.dispatchEvent(inEvent);
     };
 
     const onMobileHoverOut = () => {
