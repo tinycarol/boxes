@@ -20,11 +20,20 @@ class SoundManager {
     }
   }
 
+  renderAttribution() {
+    const a = document.createElement("a");
+    a.id = "attribution";
+    a.href = "https://www.flaticon.com/free-icons/speaker";
+    a.title = "speaker icons";
+    a.innerText = "Speaker icons created by alta-icon - Flaticon";
+    return a;
+  }
+
   render() {
-      const muteButton = document.createElement("button");
-      muteButton.addEventListener("click", this.mute.bind(this));
-      muteButton.classList.add("mute");
-      this.element = muteButton;
-      return muteButton;
+    const muteButton = document.createElement("button");
+    muteButton.addEventListener("click", this.mute.bind(this));
+    muteButton.classList.add("mute");
+    this.element = muteButton;
+    return muteButton;
   }
 }

@@ -21,6 +21,7 @@ const start = () => {
   const sound = new SoundManager(audio);
 
   document.body.appendChild(sound.render());
+  document.body.appendChild(sound.renderAttribution());
 
   const colors = [
     "red",
@@ -64,7 +65,9 @@ const start = () => {
     };
 
     document.body.addEventListener("touchstart", onMobileHover);
-    document.body.addEventListener("touchmove", onMobileHover, {passive: false});
+    document.body.addEventListener("touchmove", onMobileHover, {
+      passive: false,
+    });
     document.body.addEventListener("touchend", onMobileHoverOut);
   };
 
